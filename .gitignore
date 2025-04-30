@@ -4,3 +4,10 @@
 .httr-oauth
 .DS_Store
 .quarto
+inst/doc
+/doc/
+/Meta/
+^Rplots\.pdf$
+^coexp_pos_1\.png$
+^coexp_pos_2\.png$
+^coexp_pos_3\.png$

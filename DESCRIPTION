@@ -1,11 +1,45 @@
 Package: fatTissueTumor
-Title: What the Package Does (One Line, Title Case)
-Version: 0.0.0.9000
+Type: Package
+Title: Analysis of adipose tissue-tumor interaction
+Version: 0.1.0
 Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"))
-Description: What the package does (one paragraph).
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
-    license
+    person(given = "Sebastiano", 
+           family = "Di Bella", 
+           email = "sebydibella@gmail.com", 
+           role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0001-7161-303X"))
+Description: Collection of features and datasets for studying the interaction between adipose tissue and cancer. Includes tools for co-expression analysis, integration with signaling models (e.g., leptin), preprocessing pipeline, and normalized public data.
+License: MIT + file LICENSE
 Encoding: UTF-8
+LazyData: true
+Depends: R (>= 4.0.0)
+Imports: 
+    magrittr,
+    AnnotationDbi,
+    Biobase,
+    SummarizedExperiment,
+    preprocessCore,
+    biomaRt,
+    enrichplot,
+    BiocManager
+Suggests: 
+    testthat (>= 3.0.0),
+    knitr,
+    heatmaply,
+    plotly,
+    pathview,
+    org.Hs.eg.db,
+    ReactomePA,
+    sva,
+    clusterProfiler,
+    enrichR,
+    visNetwork,
+    igraph,
+    rmarkdown,
+    ArrayExpress,
+    GEOquery,
+    TCGAbiolinks
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
+VignetteBuilder: knitr
+Config/testthat/edition: 3

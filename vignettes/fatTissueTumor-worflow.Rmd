@@ -1,0 +1,91 @@
+---
+title: "Analysis workflow with fatTissueTumor"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Analysis workflow with fatTissueTumor}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.width = 7,
+  fig.height = 5
+)
+library(fatTissueTumor)
+```
+
+# Introduction
+
+This vignette shows a complete analysis workflow with the **fatTissueTumor** package, from data import to preprocessing, co-expression analysis, enrichment and visualization.
+
+
+# Main functions
+
+|Funzione               | Short Description                                         |
+|-----------------------|-----------------------------------------------------------|
+|import_GEO             | Import data from GEO                                      |
+|import_TCGA            | Import data from TCGA                                     |
+|import_ArrayExpress    |	Import data from ArrayExpress                             |
+|preprocess_expression  |	Advanced preprocessing pipeline                           |
+|gene_coexpression	    | Calculate the correlation between two genes               |
+|top_gene_coexpression  |	Identifies the most co-expressed gene pairs               |
+|plot_enrichment_result |	View enrichment results (GO/KEGG/Reactome)                |
+
+# Importing sample data
+```{r load_data, eval=FALSE}
+data("expr_breast")
+data("pheno_breast")
+str(expr_breast)
+str(pheno_breast)
+```
+
+# Preprocessing
+```{r preprocessing, eval=FALSE}
+res <- preprocess_expression(expr_breast, log_transform = TRUE, return_report = TRUE)
+expr_proc <- res$expr
+print(res$report)
+```
+
+# Co-expression analysis
+```{r co_expression, eval=FALSE}
+# Calculate the correlation between two genes.
+gene_coexpression(expr_proc, "LEP", "STAT3")
+
+# Find the 5 most co-expressed pairs.
+top_pairs <- top_gene_coexpression(expr_proc, top_n = 5)
+print(top_pairs)
+```
+
+# GO enrichment analysis
+```{r enrichment, eval=FALSE}
+if (!requireNamespace("clusterProfiler", quietly = TRUE)) BiocManager::install("clusterProfiler")
+if (!requireNamespace("org.Hs.eg.db", quietly = TRUE)) BiocManager::install("org.Hs.eg.db")
+library(clusterProfiler)
+library(org.Hs.eg.db)
+
+# Select the most highly expressed genes as an example.
+gene_symbols <- rownames(expr_proc)[1:10]
+gene_df <- bitr(gene_symbols, fromType = "SYMBOL", toType = "ENTREZID", OrgDb = org.Hs.eg.db)
+gene_list <- unique(gene_df$ENTREZID)
+
+ego <- enrichGO(
+  gene = gene_list,
+  OrgDb = org.Hs.eg.db,
+  keyType = "ENTREZID",
+  ont = "BP",
+  pAdjustMethod = "BH",
+  pvalueCutoff = 0.05,
+  qvalueCutoff = 0.2
+)
+
+# Visualization of enrichment results
+plot_enrichment_result(ego, type = "dotplot", showCategory = 10)
+```
+
+# Conclusions
+The **fatTissueTumor** package enables complete workflows for the analysis of adipose tissue-tumor interaction, from data collection to visualization of results.
+
+For more details, see the documentation of individual functions (?function_name) or the README of the package.
