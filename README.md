@@ -14,11 +14,8 @@
 You can install the development version of fatTissueTumor like so:
 
 ```r
-# Da GitHub (se pubblicato)
-# remotes::install_github("tuo-utente/fatTissueTumor")
-
-# Da locale
-devtools::install()
+# GitHub (if published)
+# remotes::install_github("https://github.com/BadSeby/fatTissueTumor")
 ```
 
 ## Main features
