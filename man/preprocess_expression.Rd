@@ -51,9 +51,7 @@ Preprocessed matrix (and, if required, a report).
 Performs sequentially: missing removal, filters on genes and samples, normalization, log-transform, batch correction.
 }
 \examples{
-\dontrun{
 data(expr_breast)
 res <- preprocess_expression(expr_breast, log_transform = TRUE, return_report = TRUE)
 str(res)
-}
 }

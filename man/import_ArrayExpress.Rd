@@ -29,7 +29,7 @@ Download an ArrayExpress experiment and return a list with expression matrix, ph
 \examples{
 \dontrun{
 # This example requires an internet connection and may fail during automated checks
-ae <- import_ArrayExpress("E-MTAB-62", normalize = TRUE)
+ae <- import_ArrayExpress("E-MTAB-8632", normalize = TRUE)
 str(ae)
 }
 }

@@ -20,3 +20,15 @@ List of data frames with results.
 \description{
 Enrichment analysis with enrichR
 }
+\examples{
+\dontrun{
+if (requireNamespace("enrichR", quietly = TRUE)) {
+  # Example with genes symbols
+  gene_list <- c("TP53", "BRCA1", "EGFR", "MYC", "PTEN")
+  dbs <- c("KEGG_2021_Human")
+  results <- enrichment_enrichr(gene_list, databases = dbs)
+  # View first rows
+  if (length(results) > 0) print(head(results[[1]]))
+}
+}
+}

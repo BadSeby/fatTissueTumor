@@ -7,6 +7,17 @@
 #' @param id_type Type of ID if known ("auto", "symbol", "entrez", "ensembl", "probe"). Default: 'auto.
 #' @param platform Platform name (e.g., "hgu133a", "hgu133plus2") if probe. Default: NULL.
 #' @param ... Other parameters passed to enrichment_analysis().
+#' @examples
+#' if (requireNamespace("clusterProfiler", quietly = TRUE) &&
+#'     requireNamespace("org.Hs.eg.db", quietly = TRUE)) {
+#'   # Example with gene symbols (no internet required)
+#'   gene_list <- c("TP53", "BRCA1", "EGFR", "MYC", "PTEN")
+#'   # Automatic ID detection and enrichment (will use symbols)
+#'   ego <- enrichment_auto(gene_list)
+#'   if (methods::is(ego, "enrichResult") && nrow(ego@result) > 0) {
+#'     print(head(ego@result))
+#'   }
+#' }
 #' @return object enrichResult.
 #' @export
 enrichment_auto <- function(gene_list, id_type = "auto", platform = NULL, ...) {
@@ -52,7 +63,7 @@ enrichment_auto <- function(gene_list, id_type = "auto", platform = NULL, ...) {
     if (is.null(platform)) stop("Specify the name of the platform (e.g. hgu133a).")
     pkg <- paste0(platform, ".db")
     if (!requireNamespace(pkg, quietly = TRUE)) {
-      BiocManager::install(pkg, ask = FALSE)
+      stop("Package platform is required for this function. Please install it.")
     }
     db <- getExportedValue(pkg, pkg)
     gene_symbols <- AnnotationDbi::mapIds(

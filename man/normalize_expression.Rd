@@ -18,5 +18,6 @@ Normalized matrix.
 Apply different normalization methods to an expression matrix (genes x samples).
 }
 \examples{
+data(expr_small)
 norm_expr <- normalize_expression(expr_small, method = "zscore")
 }

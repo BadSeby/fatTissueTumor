@@ -8,6 +8,13 @@
 #' @param out_dir Output folder for PNG files (default: tempdir()).
 #' @param ... Other parameters passed to pathview.
 #' @return Path to the generated PNG file.
+#' @examples
+#' if (requireNamespace("pathview", quietly = TRUE)) {
+#'   # Examples: Create an expression cetor with EntrezID
+#'   gene_data <- c("1234" = 2, "5678" = -1)
+#'   # Substitute pathway_id with a valid id for your case
+#'   # png_file <- plot_pathway_kegg(gene_data, pathway_id = "hsa04910")
+#' }
 #' @export
 #' @importFrom utils data head
 plot_pathway_kegg <- function(gene_data, pathway_id, species = "hsa", out_dir = tempdir(), ...) {

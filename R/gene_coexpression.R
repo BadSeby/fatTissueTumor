@@ -9,7 +9,6 @@
 #'
 #' @return A numerical value representing the correlation between the two genes.
 #' @examples
-#' \dontrun{
 #' # Example with dummy data
 #' expr <- data.frame(
 #' geneA = c(1, 2, 3, 4, 5),
@@ -17,7 +16,6 @@
 #' geneC = c(5, 4, 3, 2, 1)
 #' )
 #' gene_coexpression(t(expr), "geneA", "geneB")
-#'}
 #' @export
 gene_coexpression <- function(expr_data, gene1, gene2, method = "pearson") {
   if (!(gene1 %in% rownames(expr_data))) {

@@ -168,9 +168,6 @@ plot_coexpression_network(g, node_anno = group, palette = heat.colors)
 ## GO enrichment analysis and visualization.
 ```{r enrichGO-setup, message=FALSE, warning=FALSE, fig.width=7, fig.height=5}
 # Install packages only if they are missing (optional, you can remove these lines if already installed)
-if (!requireNamespace("clusterProfiler", quietly = TRUE)) BiocManager::install("clusterProfiler")
-if (!requireNamespace("org.Hs.eg.db", quietly = TRUE)) BiocManager::install("org.Hs.eg.db")
-if (!requireNamespace("enrichplot", quietly = TRUE)) BiocManager::install("enrichplot")
 
 library(clusterProfiler)
 library(org.Hs.eg.db)
@@ -229,9 +226,8 @@ str(gse)
 expr_tcga <- import_TCGA("TCGA-BRCA")
 dim(expr_tcga)
 ```
-#' @examples
-#' \dontrun{
-#' # This example requires an internet connection and may fail during automated checks
-#' ae <- import_ArrayExpress("E-MTAB-62", normalize = TRUE)
-#' str(ae)
-#' }
+
+## Session Information
+```{r session, eval=FALSE}
+sessionInfo()
+```

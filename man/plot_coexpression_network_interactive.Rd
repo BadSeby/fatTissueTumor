@@ -16,3 +16,12 @@ plot_coexpression_network_interactive(g, node_anno = NULL, palette = rainbow)
 \description{
 Display a co-expression network interactively
 }
+\examples{
+if (requireNamespace("igraph", quietly = TRUE) && requireNamespace("visNetwork", quietly = TRUE)) {
+  set.seed(1)
+  expr_matrix <- matrix(rnorm(100), nrow = 10)
+  rownames(expr_matrix) <- paste0("Gene", 1:10)
+  g <- coexpression_network(expr_matrix, top_genes = 5,threshold = 0.2)
+  plot_coexpression_network_interactive(g)
+}
+}

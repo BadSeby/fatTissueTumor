@@ -22,7 +22,6 @@ A numerical value representing the correlation between the two genes.
 This function calculates the expression correlation between two genes in a gene expression dataset.
 }
 \examples{
-\dontrun{
 # Example with dummy data
 expr <- data.frame(
 geneA = c(1, 2, 3, 4, 5),
@@ -30,5 +29,4 @@ geneB = c(2, 4, 6, 8, 10),
 geneC = c(5, 4, 3, 2, 1)
 )
 gene_coexpression(t(expr), "geneA", "geneB")
-}
 }

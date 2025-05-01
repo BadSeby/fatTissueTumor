@@ -18,8 +18,7 @@ Corrected matrix.
 Apply batch effect correction using ComBat.
 }
 \examples{
-\dontrun{
-# batch <- c(rep(1, 5), rep(2, 5))
-# expr_combat <- correct_batch(expr_small, batch)
-}
+data(expr_small)
+batch <- c(rep(1, 5), rep(2, 5))
+expr_combat <- correct_batch(expr_small, batch)
 }

@@ -21,3 +21,14 @@ htmlwidget object (viewable in RStudio or browser).
 \description{
 Create an interactive heatmap of expression data using heatmaply.
 }
+\examples{
+if (requireNamespace("heatmaply", quietly = TRUE)) {
+  # Create a random expression matrix (genes x samples)
+  set.seed(42)
+  expr_matrix <- matrix(rnorm(200), nrow = 20)
+  rownames(expr_matrix) <- paste0("Gene", 1:20)
+  colnames(expr_matrix) <- paste0("Sample", 1:10)
+  # Display the interactive heatmap for the 10 most variable genes
+  interactive_heatmap(expr_matrix, top_genes = 10)
+}
+}

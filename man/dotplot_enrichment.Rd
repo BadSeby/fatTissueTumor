@@ -11,6 +11,29 @@ dotplot_enrichment(enrich_result, top = 10)
 
 \item{top}{No. of terms to display (default: 10).}
 }
+\value{
+No return value, called for side effects (plot).
+}
 \description{
 Dotplot of enrichment results
+}
+\examples{
+if (requireNamespace("clusterProfiler", quietly = TRUE) &&
+    requireNamespace("enrichplot", quietly = TRUE) &&
+    requireNamespace("org.Hs.eg.db", quietly = TRUE)) {
+  # Example with Entrez IDs (no internet required)
+  gene <- c("4312", "8318", "10874", "55143", "55388", "991", "6280", "23046", "949", "10533")
+  ego <- clusterProfiler::enrichGO(
+    gene          = gene,
+    OrgDb         = org.Hs.eg.db::org.Hs.eg.db,
+    keyType       = "ENTREZID",
+    ont           = "BP",
+    pAdjustMethod = "BH",
+    pvalueCutoff  = 0.1,
+    readable      = FALSE
+  )
+  if (methods::is(ego, "enrichResult") && nrow(ego@result) > 0) {
+    dotplot_enrichment(ego, top = 5)
+  }
+}
 }

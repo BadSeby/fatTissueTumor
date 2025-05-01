@@ -41,17 +41,18 @@ pheno_ovary <- pheno_ovary[colnames(expr_ovary), , drop = FALSE]
 save(expr_ovary, pheno_ovary, file = "expr_ovary.rda")
 
 # 4. E-MTAB-8632 (co-culture)
-#ae <- ArrayExpress("E-MTAB-8632")
-df <- read.delim("norm_e_mtab_8632.txt", check.names = FALSE)
-df_unique <- df[!duplicated(df[,1]), ]
-rownames(df_unique) <- df_unique[,1]
-expr_coculture <- df_unique[,-1]
-expr_coculture <- as.matrix(expr_coculture)
-mode(expr_coculture) <- "numeric"
-pheno_coculture <- read.delim("E-MTAB-8632.sdrf.txt", row.names = 1)
-expr_coculture <- subset_matrix(expr_coculture, n_genes = 30, n_samples = 10)
-pheno_coculture <- pheno_coculture[colnames(expr_coculture), , drop = FALSE]
-save(expr_coculture, pheno_coculture, file = "expr_coculture.rda")
+# Download manually Arrayexpress dataset E-MTAB-8632
+# link: https://www.ebi.ac.uk/biostudies/ArrayExpress/studies/E-MTAB-8632?query=E-MTAB-8632
+# df <- read.delim("path/to/norm.txt", check.names = FALSE)
+# df_unique <- df[!duplicated(df[,1]), ]
+# rownames(df_unique) <- df_unique[,1]
+# expr_coculture <- df_unique[,-1]
+# expr_coculture <- as.matrix(expr_coculture)
+# mode(expr_coculture) <- "numeric"
+# pheno_coculture <- read.delim("path/to/E-MTAB-8632.sdrf.txt", row.names = 1)
+# expr_coculture <- subset_matrix(expr_coculture, n_genes = 30, n_samples = 10)
+# pheno_coculture <- pheno_coculture[colnames(expr_coculture), , drop = FALSE]
+# save(expr_coculture, pheno_coculture, file = "expr_coculture.rda")
 
 # Sposta i file .rda nella cartella data/ del pacchetto
 file.copy("expr_breast.rda", "../data/expr_breast.rda", overwrite = TRUE)

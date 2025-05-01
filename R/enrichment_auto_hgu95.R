@@ -11,7 +11,7 @@ enrichment_auto_hgu95 <- function(probe_list, ...) {
   all_symbols <- character(0)
   for (pkg in platforms) {
     if (!requireNamespace(pkg, quietly = TRUE)) {
-      BiocManager::install(pkg, ask = FALSE)
+      stop("Package HG-U95 is required for this function. Please install it.")
     }
     db <- getExportedValue(pkg, sub(".db$", ".db", pkg))
     valid_probes <- intersect(probe_list, AnnotationDbi::keys(db, keytype = "PROBEID"))

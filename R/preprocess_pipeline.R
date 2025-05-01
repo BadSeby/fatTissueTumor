@@ -16,11 +16,9 @@
 #' @param return_report If TRUE, also returns a detailed report (default: FALSE).
 #' @return Preprocessed matrix (and, if required, a report).
 #' @examples
-#' \dontrun{
 #' data(expr_breast)
 #' res <- preprocess_expression(expr_breast, log_transform = TRUE, return_report = TRUE)
 #' str(res)
-#' }
 #' @export
 preprocess_expression <- function(expr_matrix,
                                   min_expr = 1,

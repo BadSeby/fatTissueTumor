@@ -20,9 +20,7 @@ Data frame with most co-expressed gene pairs and correlation value.
 Calculates the correlation between all gene pairs and returns the most co-expressed.
 }
 \examples{
-\dontrun{
 data(expr_breast)
 top_pairs <- top_gene_coexpression(expr_breast, top_n = 5)
 print(top_pairs)
-}
 }

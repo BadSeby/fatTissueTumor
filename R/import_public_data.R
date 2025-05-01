@@ -27,7 +27,7 @@ import_GEO <- function(gse_id,
   gse <- GEOquery::getGEO(gse_id, GSEMatrix = TRUE)
   # Se più piattaforme, scegli quella desiderata
   if (!is.null(platform_id)) {
-    gse <- gse[which(sapply(gse, Biobase::annotation) == platform_id)]
+    gse <- gse[which(vapply(gse, Biobase::annotation) == platform_id)]
     if (length(gse) == 0) stop("Platform not found.")
     gse <- gse[[1]]
   } else if (length(gse) > 1) {
@@ -132,7 +132,7 @@ import_TCGA <- function(project,
 #' @examples
 #' \dontrun{
 #' # This example requires an internet connection and may fail during automated checks
-#' ae <- import_ArrayExpress("E-MTAB-62", normalize = TRUE)
+#' ae <- import_ArrayExpress("E-MTAB-8632", normalize = TRUE)
 #' str(ae)
 #' }
 #' @export

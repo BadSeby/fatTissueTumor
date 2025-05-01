@@ -22,3 +22,15 @@ object enrichResult.
 Accepts a list of genes (probeID, symbols, Entrez, Ensembl) and automatically converts to HGNC symbols.
 Then runs enrichment_analysis().
 }
+\examples{
+if (requireNamespace("clusterProfiler", quietly = TRUE) &&
+    requireNamespace("org.Hs.eg.db", quietly = TRUE)) {
+  # Example with gene symbols (no internet required)
+  gene_list <- c("TP53", "BRCA1", "EGFR", "MYC", "PTEN")
+  # Automatic ID detection and enrichment (will use symbols)
+  ego <- enrichment_auto(gene_list)
+  if (methods::is(ego, "enrichResult") && nrow(ego@result) > 0) {
+    print(head(ego@result))
+  }
+}
+}

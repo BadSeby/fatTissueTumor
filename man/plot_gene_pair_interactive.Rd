@@ -17,7 +17,8 @@ plot_gene_pair_interactive(expr_data, gene1, gene2)
 Use plotly for an interactive scatterplot of a gene pair.
 }
 \examples{
-\dontrun{
-plot_gene_pair_interactive(expr_filt, coexp$gene1[1], coexp$gene2[1])
-}
+data(expr_small)
+filt_expr <- filter_genes(expr_small, min_mean = 1, min_var = 0.1)
+coexp <- top_gene_coexpression(filt_expr, top_n = 5)
+plot_gene_pair_interactive(filt_expr, coexp$gene1[1], coexp$gene2[1])
 }

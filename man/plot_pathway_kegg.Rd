@@ -29,3 +29,11 @@ Path to the generated PNG file.
 \description{
 Use pathview to display a KEGG pathway with expression data overlay.
 }
+\examples{
+if (requireNamespace("pathview", quietly = TRUE)) {
+  # Examples: Create an expression cetor with EntrezID
+  gene_data <- c("1234" = 2, "5678" = -1)
+  # Substitute pathway_id with a valid id for your case
+  # png_file <- plot_pathway_kegg(gene_data, pathway_id = "hsa04910")
+}
+}

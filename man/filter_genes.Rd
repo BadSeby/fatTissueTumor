@@ -20,5 +20,6 @@ Filtered matrix.
 Removes genes with mean expression or variance below a threshold.
 }
 \examples{
+data(expr_small)
 filt_expr <- filter_genes(expr_small, min_mean = 1, min_var = 0.1)
 }

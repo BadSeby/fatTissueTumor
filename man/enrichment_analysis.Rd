@@ -26,3 +26,40 @@ Object of class enrichResult or similar.
 \description{
 Performs functional enrichment on a list of genes.
 }
+\examples{
+if (requireNamespace("clusterProfiler", quietly = TRUE) &&
+    requireNamespace("org.Hs.eg.db", quietly = TRUE)) {
+  # Example gene symbols (human)
+  gene_list <- c("TP53", "BRCA1", "EGFR", "MYC", "PTEN")
+  # GO enrichment analysis
+  ego <- enrichment_analysis(gene_list, type = "GO")
+  if (methods::is(ego, "enrichResult") && nrow(ego@result) > 0) {
+    print(head(ego@result))
+  }
+  # KEGG enrichment analysis (requires Entrez IDs)
+  # Convert gene symbols to Entrez IDs
+  if (requireNamespace("AnnotationDbi", quietly = TRUE)) {
+    entrez_ids <- AnnotationDbi::mapIds(
+      org.Hs.eg.db::org.Hs.eg.db,
+      keys = gene_list,
+      column = "ENTREZID",
+      keytype = "SYMBOL",
+      multiVals = "first"
+    )
+    entrez_ids <- na.omit(entrez_ids)
+    if (length(entrez_ids) > 0) {
+      ekegg <- enrichment_analysis(unname(entrez_ids), type = "KEGG")
+      if (methods::is(ekegg, "enrichResult") && nrow(ekegg@result) > 0) {
+        print(head(ekegg@result))
+      }
+    }
+  }
+  # Reactome enrichment analysis (if ReactomePA is available)
+  if (requireNamespace("ReactomePA", quietly = TRUE)) {
+    ereactome <- enrichment_analysis(gene_list, type = "Reactome")
+    if (methods::is(ereactome, "enrichResult") && nrow(ereactome@result) > 0) {
+      print(head(ereactome@result))
+    }
+  }
+}
+}

@@ -8,9 +8,24 @@
 #' @param ... Other parameters for the plotting function.
 #' @return A ggplot2 or enrichplot object.
 #' @examples
-#' \dontrun{
-#' # Example (requires enrichResult object)
-#' # plot_enrichment_result(ego, type = "dotplot", showCategory = 10)
+#' if (requireNamespace("clusterProfiler", quietly = TRUE) &&
+#'     requireNamespace("enrichplot", quietly = TRUE) &&
+#'     requireNamespace("org.Hs.eg.db", quietly = TRUE)) {
+#'   # Example gene symbols (human)
+#'   gene_list <- c("TP53", "BRCA1", "EGFR", "MYC", "PTEN")
+#'   # Perform GO enrichment analysis
+#'   ego <- clusterProfiler::enrichGO(
+#'     gene          = gene_list,
+#'     OrgDb         = org.Hs.eg.db::org.Hs.eg.db,
+#'     keyType       = "SYMBOL",
+#'     ont           = "BP",
+#'     pvalueCutoff  = 0.1
+#'   )
+#'   # Plot dotplot if results are available
+#'   if (methods::is(ego, "enrichResult") && nrow(ego@result) > 0) {
+#'     plot_enrichment_result(ego, type = "dotplot", showCategory = 5)
+#'     plot_enrichment_result(ego, type = "barplot", showCategory = 5)
+#'   }
 #' }
 #' @export
 #' @importFrom graphics barplot legend par abline

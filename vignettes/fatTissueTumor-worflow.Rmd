@@ -89,3 +89,8 @@ plot_enrichment_result(ego, type = "dotplot", showCategory = 10)
 The **fatTissueTumor** package enables complete workflows for the analysis of adipose tissue-tumor interaction, from data collection to visualization of results.
 
 For more details, see the documentation of individual functions (?function_name) or the README of the package.
+
+# Session Information
+```{r session, eval=FALSE}
+sessionInfo()
+```

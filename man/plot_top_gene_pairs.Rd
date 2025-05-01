@@ -29,12 +29,15 @@ plot_top_gene_pairs(
 
 \item{prefix}{Prefix for PNG files (default: "gene_pair_").}
 }
+\value{
+No return value, called for side effects (plot).
+}
 \description{
 Create scatterplots for each of the first N co-expressed gene pairs, with customization options.
 }
 \examples{
-\dontrun{
-coexp <- top_gene_coexpression(expr_filt, top_n = 5)
-plot_top_gene_pairs(expr_filt, coexp, n_plot = 3, save_plot = TRUE)
-}
+data(expr_small)
+filt_expr <- filter_genes(expr_small, min_mean = 1, min_var = 0.1)
+coexp <- top_gene_coexpression(filt_expr, top_n = 5)
+plot_top_gene_pairs(filt_expr, coexp, n_plot = 3, save_plot = TRUE)
 }

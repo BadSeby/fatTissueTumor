@@ -7,11 +7,9 @@
 #' @param method Correlation method: 'pearson’, ‘spearman’, ‘kendall’ (default: ‘pearson’).
 #' @return Data frame with most co-expressed gene pairs and correlation value.
 #' @examples
-#' \dontrun{
 #' data(expr_breast)
 #' top_pairs <- top_gene_coexpression(expr_breast, top_n = 5)
 #' print(top_pairs)
-#' }
 #' @export
 top_gene_coexpression <- function(expr_data, method = "pearson", top_n = 10) {
   gene_names <- rownames(expr_data)

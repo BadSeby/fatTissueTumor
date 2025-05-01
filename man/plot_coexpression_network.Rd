@@ -18,3 +18,28 @@ plot_coexpression_network(g, node_anno = NULL, palette = rainbow, ...)
 \description{
 Display a co-expression network (static, custom)
 }
+\examples{
+if (requireNamespace("igraph", quietly = TRUE)) {
+  # Expression matrix
+  set.seed(123)
+  expr_matrix <- matrix(rnorm(50), nrow = 5)
+  rownames(expr_matrix) <- paste0("Gene", 1:5)
+  colnames(expr_matrix) <- paste0("Sample", 1:10)
+  # Nwetwok co-expression
+  cor_mat <- cor(t(expr_matrix))
+  cor_mat[lower.tri(cor_mat, diag = TRUE)] <- 0
+  edges <- which(abs(cor_mat) > 0.5, arr.ind = TRUE)
+  edge_list <- data.frame(
+    from = rownames(cor_mat)[edges[,1]],
+    to = colnames(cor_mat)[edges[,2]],
+    weight = cor_mat[edges]
+  )
+  g <- igraph::graph_from_data_frame(edge_list, directed = FALSE)
+  # Example without annotation
+  plot_coexpression_network(g)
+  # Example with nodes annotation
+  node_anno <- factor(c("A", "A", "B", "B", "C"))
+  names(node_anno) <- igraph::V(g)$name
+  plot_coexpression_network(g, node_anno = node_anno)
+}
+}

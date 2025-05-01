@@ -10,10 +10,11 @@
 #' @param save_plot If TRUE, save graphs as PNG (default: FALSE).
 #' @param prefix Prefix for PNG files (default: "gene_pair_").
 #' @examples
-#' \dontrun{
-#' coexp <- top_gene_coexpression(expr_filt, top_n = 5)
-#' plot_top_gene_pairs(expr_filt, coexp, n_plot = 3, save_plot = TRUE)
-#' }
+#' data(expr_small)
+#' filt_expr <- filter_genes(expr_small, min_mean = 1, min_var = 0.1)
+#' coexp <- top_gene_coexpression(filt_expr, top_n = 5)
+#' plot_top_gene_pairs(filt_expr, coexp, n_plot = 3, save_plot = TRUE)
+#' @return No return value, called for side effects (plot).
 #' @export
 plot_top_gene_pairs <- function(expr_data, coexp_df, n_plot = 3,
                                 point_col = "darkblue", point_cex = 1.5,
